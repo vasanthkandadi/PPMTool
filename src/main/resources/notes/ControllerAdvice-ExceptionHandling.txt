@@ -1,0 +1,28 @@
+
+Step-by-Step Execution Flow:
+Call to saveOrUpdate Method:
+
+The client sends a request to save or update a project.
+The saveOrUpdate method is invoked in the service class.
+Exception Occurrence:
+
+During the projectRepository.save(project) operation, if a constraint violation occurs (e.g., due to a duplicate project identifier), an exception is thrown.
+Catch and Throw Custom Exception:
+
+The catch block catches the exception and throws a new ProjectIDException with a custom message: "Project ID : [project identifier] already exists".
+Exception Handling by @ControllerAdvice:
+
+Since ProjectIDException is thrown, Spring's @ControllerAdvice (CustomResEntityHandler class) catches this exception.
+The handleProjectIDException method is invoked.
+Response Preparation:
+
+The handleProjectIDException method creates a new ProjectIDExceptionResponse object with the exception message (ex.getMessage()).
+The method wraps this response object in a ResponseEntity with an HTTP status code of BAD_REQUEST.
+Return Response to Client:
+
+The client receives the response containing the message that the project identifier already exists, with a 400 HTTP status code.
+
+Benefits of This Approach:
+Centralized Exception Handling: By using @ControllerAdvice, all exceptions of type ProjectIDException are handled in one place, making it easier to maintain and modify the error handling logic.
+Clear and Structured Error Response: The use of ProjectIDExceptionResponse provides a clear structure for the error response, making it easier for clients to understand what went wrong.
+Consistent HTTP Status Codes: The custom exception ensures that the appropriate HTTP status code (400 Bad Request) is returned whenever a ProjectIDException is thrown.
