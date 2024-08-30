@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-    Optional<Project> findByProjectIdentifier(String projectID);
+    Project findByProjectIdentifier(String projectID);
 
     @Override
     List<Project> findAll();
