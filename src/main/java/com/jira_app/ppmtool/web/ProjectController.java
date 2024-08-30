@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -38,4 +39,10 @@ public class ProjectController {
     public Optional<Project> getProjectByID(@PathVariable("projectID") String projectID){
         return projectService.findProjectByPID(projectID);
     }
+
+    @GetMapping("/all")
+    public List<Project> getAllProjects(){
+        return projectService.findAllProjects();
+    }
+
 }

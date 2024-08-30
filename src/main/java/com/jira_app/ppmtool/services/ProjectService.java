@@ -6,6 +6,7 @@ import com.jira_app.ppmtool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,9 @@ public class ProjectService {
            throw new ProjectIDException("Project ID : " + projectID + " does not exist");
        }
        return project;
+    }
+
+    public List<Project> findAllProjects(){
+        return projectRepository.findAll();
     }
 }
