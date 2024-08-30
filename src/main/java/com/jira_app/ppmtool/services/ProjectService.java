@@ -6,6 +6,8 @@ import com.jira_app.ppmtool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ProjectService {
     private final ProjectRepository projectRepository;
@@ -21,5 +23,13 @@ public class ProjectService {
         }catch(Exception ex){
             throw new ProjectIDException("Project ID : " + project.getProjectIdentifier() + " already exists");
         }
+    }
+
+    public Optional<Project> findProjectByPID(String projectID){
+       Optional<Project> project  =  projectRepository.findByProjectIdentifier(projectID.toUpperCase());
+       if(project.isEmpty()){
+           throw new ProjectIDException("Project ID : " + projectID + " does not exist");
+       }
+       return project;
     }
 }
