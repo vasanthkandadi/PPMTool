@@ -40,7 +40,7 @@ public class ProjectController {
         return projectService.findProjectByPID(projectID);
     }
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Project> getAllProjects(){
         return projectService.findAllProjects();
     }
