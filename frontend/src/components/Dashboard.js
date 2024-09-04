@@ -1,4 +1,5 @@
 
+import CreateProjectButton from "./Project/CreateProjectButton";
 import ProjectItem from "./Project/ProjectItem";
 import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 const Dashboard = () => {
@@ -9,9 +10,7 @@ const Dashboard = () => {
                     <div className="col-md-12">
                         <h1 className="display-4 text-center">Projects</h1>
                         <br />
-                        <a href="www.google.com" className="btn btn-lg btn-info">
-                            Create a Project
-                        </a>
+                        <CreateProjectButton/>
                         <br />
                         <hr />
                         <ProjectItem/>
